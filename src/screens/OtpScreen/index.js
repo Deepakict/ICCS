@@ -5,20 +5,20 @@ import axios from 'axios';
 import Toast from 'react-native-toast-message';
 
 export const OtpScreen = (props) => {
-  const mobile = props.route.params.mobile;
+  const userId = props.route.params.mobile;
   const [text, setText] = useState('')
 
   const verifyOTP = async () => {
-
+    // http://203.123.32.98:3636/accenthrp/api/ValidateUser.aspx?uid=ATS57343&upass=accent@123
     try {
-      const url = `http://203.123.32.98:3636/accenthrp/api/validateotp.aspx?mobno=${mobile}&OTP=${text}`
+      const url = `http://203.123.32.98:3636/accenthrp/api/ValidateUser.aspx?uid=${userId}&upass=${text}`
       const response = await axios.get(url);
       if (response.data.Table[0].Sucess === 1) {
         props.navigation.navigate('HomeScreen', { data: response.data })
       } else {
         Toast.show({
           type: 'error',
-          text1: 'Not a valid OTP',
+          text1: 'Not a valid Account',
         });
       }
     } catch (error) {
@@ -30,32 +30,14 @@ export const OtpScreen = (props) => {
 
   }
   
-  const sentOtp = async () => {
-    try {
-      const url = `http://203.123.32.98:3636/accenthrp/api/sendotp.aspx?mobno=${mobile}`
-      const response = await axios.get(url);
-      if (response.data.Table[0].Sucess === 1) {
-
-      } else {
-        Toast.show({
-          type: 'error',
-          text1: 'Not a valid user',
-        });
-      }
-    } catch (error) {
-      Toast.show({
-        type: 'error',
-        text1: 'Server Error',
-      });
-    }
-
-  }
-
+ 
   return (
     <View style={{
       backgroundColor: '#fff',
       flex: 1, justifyContent: 'center', padding: '5%'
     }}>
+            <Toast />
+
       <StatusBar
         backgroundColor="#fff"
         barStyle="dark-content"
@@ -65,15 +47,30 @@ export const OtpScreen = (props) => {
       <View style={{ height: 10 }} />
       <Text style={{ fontSize: 22, color: '#808080' }}>Awesome, Thanks!</Text>
       <View style={{ height: 5 }} />
-      <Text style={{ fontSize: 16, color: '#808080' }}>Please enter the OTP sent to <Text style={{ color: '#000' }}>{text}</Text> <Text onPress={() => setShowOTP(false)} style={{ color: '#6B8E23' }}> Edit</Text></Text>
+      <Text style={{ fontSize: 16, color: '#808080' }}>Please enter the password. <Text style={{fontSize: 14, color: '#808080' }}>{userId}</Text><Text onPress={() =>props.navigation.goBack()} style={{ color: '#6B8E23' }}> Edit User Id ?</Text></Text>
       <View style={{ height: 30 }} />
       <View style={{ flexDirection: 'row', }}>
-        <OtpInputs
+      <TextInput
+      textBreakStrategy='simple'
+          style={{
+            flex: 0.8,
+            backgroundColor: '#ffff',
+            fontSize: 18, height: 45,
+            borderWidth: 1,
+            borderRadius: 4,
+            color:'#000'
+
+          }}
+          placeholder="Enter User Password"
+          value={text}
+          onChangeText={text => setText(text)}
+        />
+        {/* <OtpInputs
           inputContainerStyles={{ borderWidth: 0.2, width: 45, height: 45, borderRadius: 4 }}
           inputStyles={{ textAlign: 'center' }}
           handleChange={(code) => setText(code)}
           numberOfInputs={4}
-        />
+        /> */}
         <View style={{ flex: 0.05 }} />
         <TouchableOpacity onPress={verifyOTP} style={{
           backgroundColor: '#808080', flex: 0.15, alignItems: 'center',
@@ -85,8 +82,8 @@ export const OtpScreen = (props) => {
       <View style={{ height: 25 }} />
 
       <View style={{ flexDirection: 'row' }}>
-        <Text style={{ fontSize: 14, color: '#808080' }}>Didn't receive OTP ?</Text>
-        <Text onPress={sentOtp} style={{ fontSize: 14, color: '#6B8E23' }}> Resend</Text>
+        <Text style={{ fontSize: 14, color: '#808080' }}>Forget Your Password ?</Text>
+        <Text  style={{ fontSize: 14, color: '#6B8E23' }}> Contact Admin</Text>
         <View>
         </View>
       </View>

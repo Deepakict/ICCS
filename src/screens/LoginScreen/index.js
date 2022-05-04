@@ -1,5 +1,5 @@
-import { View, Text, StatusBar, Image, TextInput, TouchableOpacity,Keyboard } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, StatusBar, Image, TextInput, TouchableOpacity, Keyboard } from 'react-native'
+import React, { useState, useEffect } from 'react'
 import { IconButton } from 'react-native-paper';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
@@ -9,29 +9,40 @@ export const LoginScreen = (props) => {
 
   const sentOtp = async () => {
     Keyboard.dismiss()
-    try {
-      const url = `http://203.123.32.98:3636/accenthrp/api/sendotp.aspx?mobno=${text}`
-      const response = await axios.get(url);
-      if (response.data.Table[0].Sucess === 1) {
-        props.navigation.navigate('OtpScreen',{mobile:text})
-      } else {
-        Toast.show({
-          type: 'error',
-          text1: 'Not a valid user',
-        });
-      }
-    } catch (error) {
-      console.log("ere", error)
+    // try {
+    //   const url = `http://203.123.32.98:3636/accenthrp/api/sendotp.aspx?mobno=${text}`
+    //   const response = await axios.get(url);
+    //   if (response.data.Table[0].Sucess === 1) {
+    //     props.navigation.navigate('OtpScreen',{mobile:text})
+    //   } else {
+    //     Toast.show({
+    //       type: 'error',
+    //       text1: 'Not a valid user',
+    //     });
+    //   }
+    // } catch (error) {
+    //   console.log("ere", error)
+    //   Toast.show({
+    //     type: 'error',
+    //     text1: 'Server Error',
+    //   });
+    // }
+    if (text == '') {
       Toast.show({
         type: 'error',
-        text1: 'Server Error',
+        text1: 'Please Enter Employee Id',
       });
+    } else {
+      props.navigation.navigate('OtpScreen', { mobile: text })
+      setText('')
     }
+
 
   }
 
+
   return (
-    <View  style={{
+    <View style={{
       backgroundColor: '#fff',
       flex: 1, justifyContent: 'center', padding: '5%'
     }}>
@@ -44,9 +55,8 @@ export const LoginScreen = (props) => {
       <Text style={{ fontSize: 18, color: '#000', position: 'absolute', top: 10, right: 10, color: '#6B8E23' }}>NEED HELP ?</Text>
       <Image style={{ height: 70, width: 160, }} source={{ uri: 'https://www.iccs-bpo.com/front-end/images/iccs_logo.png' }} />
       <View style={{ height: 10 }} />
-      <Text style={{ fontSize: 22, color: '#808080' }}>Let's Get Started</Text>
+      <Text style={{ fontSize: 18, color: '#808080' }}>Welcome To HRMS Dashboard</Text>
       <View style={{ height: 5 }} />
-      <Text style={{ fontSize: 16, color: '#808080' }}>We will send an OTP to your mobile number</Text>
       <View style={{ height: 30 }} />
       <View style={{ flexDirection: 'row', }}>
         <TextInput
@@ -55,9 +65,10 @@ export const LoginScreen = (props) => {
             backgroundColor: '#ffff',
             fontSize: 18, height: 45,
             borderWidth: 1,
-            borderRadius: 4
+            borderRadius: 4,
+color:'#000'
           }}
-          placeholder="Enter your Mobile No."
+          placeholder="Enter Employee Id"
           value={text}
           onChangeText={text => setText(text)}
         />
