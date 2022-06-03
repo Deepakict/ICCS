@@ -9,24 +9,6 @@ export const LoginScreen = (props) => {
 
   const sentOtp = async () => {
     Keyboard.dismiss()
-    // try {
-    //   const url = `http://203.123.32.98:3636/accenthrp/api/sendotp.aspx?mobno=${text}`
-    //   const response = await axios.get(url);
-    //   if (response.data.Table[0].Sucess === 1) {
-    //     props.navigation.navigate('OtpScreen',{mobile:text})
-    //   } else {
-    //     Toast.show({
-    //       type: 'error',
-    //       text1: 'Not a valid user',
-    //     });
-    //   }
-    // } catch (error) {
-    //   console.log("ere", error)
-    //   Toast.show({
-    //     type: 'error',
-    //     text1: 'Server Error',
-    //   });
-    // }
     if (text == '') {
       Toast.show({
         type: 'error',

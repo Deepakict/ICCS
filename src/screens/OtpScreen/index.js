@@ -9,7 +9,6 @@ export const OtpScreen = (props) => {
   const [text, setText] = useState('')
 
   const verifyOTP = async () => {
-    // http://203.123.32.98:3636/accenthrp/api/ValidateUser.aspx?uid=ATS57343&upass=accent@123
     try {
       const url = `http://203.123.32.98:3636/accenthrp/api/ValidateUser.aspx?uid=${userId}&upass=${text}`
       const response = await axios.get(url);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { LoginScreen, OtpScreen, HomeScreen } from '../../screens';
+import { LoginScreen, OtpScreen, HomeScreen, PoshScreen } from '../../screens';
 
 const AuthStack = createNativeStackNavigator();
 
@@ -14,6 +14,7 @@ const AuthNavigator = () => {
             <AuthStack.Screen name="LoginScreen" component={LoginScreen} />
             <AuthStack.Screen name="OtpScreen" component={OtpScreen} />
             <AuthStack.Screen name="HomeScreen" component={HomeScreen} />
+            <AuthStack.Screen name="PoshScreen" component={PoshScreen} />
         </AuthStack.Navigator>
     )
 }
