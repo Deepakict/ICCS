@@ -15,6 +15,7 @@ const AuthNavigator = () => {
             <AuthStack.Screen name="OtpScreen" component={OtpScreen} />
             <AuthStack.Screen name="HomeScreen" component={HomeScreen} />
             <AuthStack.Screen name="PoshScreen" component={PoshScreen} />
+
         </AuthStack.Navigator>
     )
 }
