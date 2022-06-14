@@ -5,91 +5,100 @@ import { IconButton, Colors, Avatar } from 'react-native-paper';
 import { List } from 'react-native-paper';
 
 export const HomeScreen = (props) => {
-  const EmpData = props.route.params.data;
-  // const EmpData = {
-  //   "Table": [
-  //     {
-  //         "Sucess": 1
-  //     }
-  // ],
-  // "Table1": [
-  //     {
-  //         "LeaveType": "CL",
-  //         "NumberOfLeaves": 0.50
-  //     }
-  // ],
-  // "Table2": [
-  //     {
-  //         "Error": 0,
-  //         "ErrorMsg": "Sucess"
-  //     }
-  // ],
-  // "Table3": [
-  //     {
-  //         "EmpCode": "ATS58664",
-  //         "EmpJoinDate": "2022-04-01T00:00:00",
-  //         "EmpName": "RIKKY SAGAR",
-  //         "DesignationName": "Customer Care Executive",
-  //         "Dept_name": "Operations"
-  //     }
-  // ],
-  // "Table4": [
-  //     {
-  //         "Month": "June-2022",
-  //         "Days in Month": 30,
-  //         "Paid Days": 5.50
-  //     }
-  // ],
-  // "Table5": [
-  //     {
-  //         "Head": "Basic",
-  //         "Rate": 13000.00,
-  //         "Paid Amount": 2383.00
-  //     },
-  //     {
-  //         "Head": "Total",
-  //         "Rate": 13000.00,
-  //         "Paid Amount": 2383.00
-  //     }
-  // ],
-  // "Table6": [
-  //     {
-  //         "userid": 167366,
-  //         "empid": 167360,
-  //         "empcode": "ATS58664",
-  //         "empname": "RIKKY SAGAR",
-  //         "RM": "MAYANK SRIVASTAVA",
-  //         "FM": "MAYANK SRIVASTAVA"
-  //     }
-  // ],
-  // "Table7": [
-  //     {
-  //         "Holiday": "Republic day 2022",
-  //         "From": "26/01/2022",
-  //         "TO": "26/01/2022"
-  //     },
-  //     {
-  //         "Holiday": "Independence day...",
-  //         "From": "15/08/2022",
-  //         "TO": "15/08/2022"
-  //     },
-  //     {
-  //         "Holiday": "Gandhi Jayanti...2022",
-  //         "From": "02/10/2022",
-  //         "TO": "02/10/2022"
-  //     }
-  // ]
-  //   }
+  // const EmpData = props.route.params.data;
+  const EmpData = {
+    "Table": [
+      {
+          "Sucess": 1
+      }
+  ],
+  "Table1": [
+      {
+          "LeaveType": "CL",
+          "NumberOfLeaves": 0.50
+      }
+  ],
+  "Table2": [
+      {
+          "Error": 0,
+          "ErrorMsg": "Sucess"
+      }
+  ],
+  "Table3": [
+      {
+          "EmpCode": "ATS58664",
+          "EmpJoinDate": "2022-04-01T00:00:00",
+          "EmpName": "RIKKY SAGAR",
+          "DesignationName": "Customer Care Executive",
+          "Dept_name": "Operations"
+      }
+  ],
+  "Table4": [
+      {
+          "Month": "June-2022",
+          "Days in Month": 30,
+          "Paid Days": 5.50
+      }
+  ],
+  "Table5": [
+      {
+          "Head": "Basic",
+          "Rate": 13000.00,
+          "Paid Amount": 2383.00
+      },
+      {
+          "Head": "Total",
+          "Rate": 13000.00,
+          "Paid Amount": 2383.00
+      }
+  ],
+  "Table6": [
+      {
+          "userid": 167366,
+          "empid": 167360,
+          "empcode": "ATS58664",
+          "empname": "RIKKY SAGAR",
+          "RM": "MAYANK SRIVASTAVA",
+          "FM": "MAYANK SRIVASTAVA"
+      }
+  ],
+  "Table7": [
+      {
+          "Holiday": "Republic day 2022",
+          "From": "26/01/2022",
+          "TO": "26/01/2022"
+      },
+      {
+          "Holiday": "Independence day...",
+          "From": "15/08/2022",
+          "TO": "15/08/2022"
+      },
+      {
+          "Holiday": "Gandhi Jayanti...2022",
+          "From": "02/10/2022",
+          "TO": "02/10/2022"
+      }
+  ]
+    }
 
   const holiday = (data) => {
     return data.map((item, key) => {
       return (
-        <Text style={{ fontSize: 12, color: '#808080' }}>{item.Holiday}</Text>
+        <>
+        <Text style={{ fontSize: 12, color: '#808080' }}>{item.Holiday} </Text>
+        <Text style={{ fontSize: 12, color: '#808080' }}>{item.From} - {item.TO}</Text>     
+        </>
+
+
       )
     })
   }
+  const leave = (data) => {
+    return data.map((item, key) => {
+      return <Text style={{ fontSize: 12, color: '#808080' }}>{item.LeaveType}: {item.NumberOfLeaves} </Text>
 
-console.log("EmpData?.Table6[0]?.userid",EmpData?.Table6[0]?.userid)
+    })
+  }
   return (
 
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -117,10 +126,11 @@ console.log("EmpData?.Table6[0]?.userid",EmpData?.Table6[0]?.userid)
       <View style={{ flex: 0.1, padding: '2%', flexDirection: 'column', justifyContent: 'center' }}>
         <Text style={{ fontSize: 22, color: '#808080', fontWeight: '500' }}>Let's Get with Dashboard !</Text>
       </View>
-      {EmpData?.Table2[0]?.Error == 0 ? (
-        <View style={{ flex: 0.7, }}>
+        <View style={{ flex: 0.75, }}>
 
-          <ScrollView contentContainerStyle={{
+          <ScrollView 
+          keyboardShouldPersistTaps='handled'
+          contentContainerStyle={{
             flexDirection: 'row',
             flexWrap: 'wrap',
             flexGrow:1,
@@ -133,6 +143,8 @@ console.log("EmpData?.Table6[0]?.userid",EmpData?.Table6[0]?.userid)
                 <Text style={{ fontSize: 12, color: '#000', fontWeight: '500', marginVertical: '2%' }}>Employee Details :</Text>
                 <Text style={{ fontSize: 12, color: '#808080' }}>ATS ID: {EmpData?.Table3[0]?.EmpCode}</Text>
                 <Text style={{ fontSize: 12, color: '#808080' }}>Name: {EmpData?.Table3[0]?.EmpName}</Text>
+                <Text style={{ fontSize: 12, color: '#808080' }}>Date Of Joining: {new Date(EmpData?.Table3[0]?.EmpJoinDate).toDateString()}</Text>
+
               </View>
             </View>
 
@@ -142,7 +154,7 @@ console.log("EmpData?.Table6[0]?.userid",EmpData?.Table6[0]?.userid)
               </View>
               <View style={{ flex: 0.55, marginTop: '2%' }}>
                 <Text style={{ fontSize: 12, color: '#000', fontWeight: '500', marginVertical: '2%' }}>Total available leaves :</Text>
-                <Text style={{ fontSize: 12, color: '#808080' }}>Number Of Leaves: {EmpData?.Table1[0]?.NumberOfLeaves}</Text>
+                {leave(EmpData?.Table1)}
               </View>
             </View>
 
@@ -164,6 +176,9 @@ console.log("EmpData?.Table6[0]?.userid",EmpData?.Table6[0]?.userid)
                 <Text style={{ fontSize: 12, color: '#000', fontWeight: '500', marginVertical: '2%' }}>Department Details:</Text>
                 <Text style={{ fontSize: 12, color: '#808080' }}>Department: {EmpData?.Table3[0]?.Dept_name}</Text>
                 <Text style={{ fontSize: 12, color: '#808080' }}>Designation Name: {EmpData?.Table3[0]?.DesignationName}</Text>
+                <Text style={{ fontSize: 12, color: '#808080' }}>RM: {EmpData?.Table6[0]?.RM}</Text>
+                <Text style={{ fontSize: 12, color: '#808080' }}>FM: {EmpData?.Table6[0]?.FM}</Text>
+
               </View>
             </View>
 
@@ -190,12 +205,6 @@ console.log("EmpData?.Table6[0]?.userid",EmpData?.Table6[0]?.userid)
             
           </ScrollView>
         </View>
-      ) : (
-        <View style={{ flex: 0.75, padding: '2%', justifyContent: "center", alignItems: 'center' }}>
-          <Text style={{ fontSize: 18, color: '#000', fontWeight: '500', flex: 0.7 }}>{EmpData?.Table2[0]?.ErrorMsg}</Text>
-
-        </View>
-      )}
     </View>
   )
 }

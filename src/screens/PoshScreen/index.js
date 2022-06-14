@@ -1,27 +1,45 @@
 import React, { useState,useEffect } from 'react'
-import { View, Text, StatusBar, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native'
+import { View,Alert, Text, StatusBar, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native'
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Toast from 'react-native-toast-message';
 import axios from 'axios';
+import Loader from '../../components/Loader';
 
 export const PoshScreen = (props) => {
     const [text, setText] = useState('')
     const [subject, setSubject] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
+
     const [userId, setUserId] = useState(String(props.route.params.userId))
 
     const poshApi = async () => {
         try {
+            setIsLoading(true)
+
+            const url = `http://203.123.32.98:3636/accenthrp/api/SendPOSHMail.aspx?userId=${Number(userId)}&subject=${subject}&detail=${text}`
             const response = await axios.get(url);
             if (response.data.Table[0].Sucess === "1") {
-                props.navigation.goBack()
+                console.log("response",response.data.Table[0])
+                Alert.alert(
+                    "Email Submit",
+                    "Your Email Is Sent Please contact to HR",
+                    [
+                      { text: "OK", onPress: () => props.navigation.goBack() }
+                    ]
+                  );
+                  setIsLoading(false)
+
             } else {
+                setIsLoading(false)
+
                 Toast.show({
                     type: 'error',
                     text1: 'something wrong please check again',
                 });
             }
         } catch (error) {
-            console.log("ett",error)
+            setIsLoading(false)
+
             Toast.show({
                 type: 'error',
                 text1: 'Server Error',
@@ -29,16 +47,24 @@ export const PoshScreen = (props) => {
         }
 
     }
+  
+
     return (
-        <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#fff' }}>
+        <ScrollView 
+        keyboardShouldPersistTaps='handled'
+
+        contentContainerStyle={{ flexGrow: 1, backgroundColor: '#fff' }}>
+         <Loader isLoading={isLoading}/>
+
             <StatusBar
                 backgroundColor="#fff"
                 barStyle="dark-content"
             />
+            
                   <Toast />
 
                   <View style={{ flex: 0.1, padding: '2%' }}>
-                  <MaterialCommunityIcon name="backspace"  onPress={()=>props.navigation.goBack()} size={30} />
+                  <MaterialCommunityIcon name="backspace"  onPress={()=>props.navigation.goBack()} size={20} />
 
             </View> 
             <View style={{ flex: 0.15, padding: '2%' }}>
@@ -67,8 +93,7 @@ export const PoshScreen = (props) => {
                         }}
                         placeholder="User ID"
                         value={userId}
-                        multiline={true}
-
+                        editable={false}
                         onChangeText={text => setUserId(text)}
                     />
                     <TextInput
