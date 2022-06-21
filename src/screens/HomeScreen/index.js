@@ -5,81 +5,81 @@ import { IconButton, Colors, Avatar } from 'react-native-paper';
 import { List } from 'react-native-paper';
 
 export const HomeScreen = (props) => {
-  // const EmpData = props.route.params.data;
-  const EmpData = {
-    "Table": [
-      {
-          "Sucess": 1
-      }
-  ],
-  "Table1": [
-      {
-          "LeaveType": "CL",
-          "NumberOfLeaves": 0.50
-      }
-  ],
-  "Table2": [
-      {
-          "Error": 0,
-          "ErrorMsg": "Sucess"
-      }
-  ],
-  "Table3": [
-      {
-          "EmpCode": "ATS58664",
-          "EmpJoinDate": "2022-04-01T00:00:00",
-          "EmpName": "RIKKY SAGAR",
-          "DesignationName": "Customer Care Executive",
-          "Dept_name": "Operations"
-      }
-  ],
-  "Table4": [
-      {
-          "Month": "June-2022",
-          "Days in Month": 30,
-          "Paid Days": 5.50
-      }
-  ],
-  "Table5": [
-      {
-          "Head": "Basic",
-          "Rate": 13000.00,
-          "Paid Amount": 2383.00
-      },
-      {
-          "Head": "Total",
-          "Rate": 13000.00,
-          "Paid Amount": 2383.00
-      }
-  ],
-  "Table6": [
-      {
-          "userid": 167366,
-          "empid": 167360,
-          "empcode": "ATS58664",
-          "empname": "RIKKY SAGAR",
-          "RM": "MAYANK SRIVASTAVA",
-          "FM": "MAYANK SRIVASTAVA"
-      }
-  ],
-  "Table7": [
-      {
-          "Holiday": "Republic day 2022",
-          "From": "26/01/2022",
-          "TO": "26/01/2022"
-      },
-      {
-          "Holiday": "Independence day...",
-          "From": "15/08/2022",
-          "TO": "15/08/2022"
-      },
-      {
-          "Holiday": "Gandhi Jayanti...2022",
-          "From": "02/10/2022",
-          "TO": "02/10/2022"
-      }
-  ]
-    }
+  const EmpData = props.route.params.data;
+  // const EmpData = {
+  //   "Table": [
+  //     {
+  //         "Sucess": 1
+  //     }
+  // ],
+  // "Table1": [
+  //     {
+  //         "LeaveType": "CL",
+  //         "NumberOfLeaves": 0.50
+  //     }
+  // ],
+  // "Table2": [
+  //     {
+  //         "Error": 0,
+  //         "ErrorMsg": "Sucess"
+  //     }
+  // ],
+  // "Table3": [
+  //     {
+  //         "EmpCode": "ATS58664",
+  //         "EmpJoinDate": "2022-04-01T00:00:00",
+  //         "EmpName": "RIKKY SAGAR",
+  //         "DesignationName": "Customer Care Executive",
+  //         "Dept_name": "Operations"
+  //     }
+  // ],
+  // "Table4": [
+  //     {
+  //         "Month": "June-2022",
+  //         "Days in Month": 30,
+  //         "Paid Days": 5.50
+  //     }
+  // ],
+  // "Table5": [
+  //     {
+  //         "Head": "Basic",
+  //         "Rate": 13000.00,
+  //         "Paid Amount": 2383.00
+  //     },
+  //     {
+  //         "Head": "Total",
+  //         "Rate": 13000.00,
+  //         "Paid Amount": 2383.00
+  //     }
+  // ],
+  // "Table6": [
+  //     {
+  //         "userid": 167366,
+  //         "empid": 167360,
+  //         "empcode": "ATS58664",
+  //         "empname": "RIKKY SAGAR",
+  //         "RM": "MAYANK SRIVASTAVA",
+  //         "FM": "MAYANK SRIVASTAVA"
+  //     }
+  // ],
+  // "Table7": [
+  //     {
+  //         "Holiday": "Republic day 2022",
+  //         "From": "26/01/2022",
+  //         "TO": "26/01/2022"
+  //     },
+  //     {
+  //         "Holiday": "Independence day...",
+  //         "From": "15/08/2022",
+  //         "TO": "15/08/2022"
+  //     },
+  //     {
+  //         "Holiday": "Gandhi Jayanti...2022",
+  //         "From": "02/10/2022",
+  //         "TO": "02/10/2022"
+  //     }
+  // ]
+  //   }
 
   const holiday = (data) => {
     return data.map((item, key) => {
@@ -121,7 +121,7 @@ export const HomeScreen = (props) => {
         </View>
       </View>
       <View style={{ flex: 0.1, padding: '2%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Image style={{ height: 50, width: 130, }} source={{ uri: 'https://www.iccs-bpo.com/front-end/images/iccs_logo.png' }} />
+        <Image style={{ height: 50, width: 130, }} source={require('../../assets/iccs_logo.png')} />
       </View>
       <View style={{ flex: 0.1, padding: '2%', flexDirection: 'column', justifyContent: 'center' }}>
         <Text style={{ fontSize: 22, color: '#808080', fontWeight: '500' }}>Let's Get with Dashboard !</Text>

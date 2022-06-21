@@ -42,7 +42,7 @@ export const OtpScreen = (props) => {
         barStyle="dark-content"
       />
       <Text style={{ fontSize: 18, color: '#000', position: 'absolute', top: 10, right: 10, color: '#6B8E23' }}>NEED HELP ?</Text>
-      <Image style={{ height: 70, width: 160, }} source={{ uri: 'https://www.iccs-bpo.com/front-end/images/iccs_logo.png' }} />
+      <Image style={{ height: 70, width: 165, }} source={require('../../assets/iccs_logo.png')} />
       <View style={{ height: 10 }} />
       <Text style={{ fontSize: 22, color: '#808080' }}>Awesome, Thanks!</Text>
       <View style={{ height: 5 }} />

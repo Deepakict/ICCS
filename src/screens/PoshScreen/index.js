@@ -69,7 +69,7 @@ export const PoshScreen = (props) => {
             </View> 
             <View style={{ flex: 0.15, padding: '2%' }}>
                 <Text style={{ fontSize: 18, color: '#000', position: 'absolute', top: 10, right: 10, color: '#6B8E23' }}>POSH COMPLAINT</Text>
-                <Image style={{ height: 50, width: 130, }} source={{ uri: 'https://www.iccs-bpo.com/front-end/images/iccs_logo.png' }} />
+                <Image style={{ height: 50, width: 130, }} source={require('../../assets/iccs_logo.png')} />
             </View>
             <View style={{ flex: 0.55, padding: '2%' }}>
 
